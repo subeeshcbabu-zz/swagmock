@@ -1,0 +1,37 @@
+{
+  "name": "swagmock",
+  "version": "0.0.1",
+  "description": "Mock data generator for swagger api",
+  "main": "lib/index.js",
+  "scripts": {
+    "lint": "eslint lib",
+    "test": "mocha tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/subeeshcbabu/swagmock.git"
+  },
+  "keywords": [
+    "swagger",
+    "openapi",
+    "mock",
+    "data",
+    "generator",
+    "swaggermock"
+  ],
+  "author": "subeesh chothendavida <subeeshcbabu@yahoo.co.in>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/subeeshcbabu/swagmock/issues"
+  },
+  "homepage": "https://github.com/subeeshcbabu/swagmock#readme",
+  "dependencies": {
+    "chance": "^1.0.3",
+    "moment": "^2.13.0",
+    "swagger-parser": "^3.4.1"
+  },
+  "devDependencies": {
+    "eslint": "^2.13.0",
+    "mocha": "^2.5.3"
+  }
+}
