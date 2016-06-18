@@ -8,7 +8,7 @@ Number.isInteger = Number.isInteger || function(value) {
         Math.floor(value) === value;
 };
 
-describe('Mock generator', function () {
+describe('Response Mock generator', function () {
     var apiPath = Path.resolve(__dirname, 'fixture/petstore.json');
     it('should generate response mock for path /store/order/{orderId}', function(done) {
         Swagmock(apiPath,{

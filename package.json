@@ -1,11 +1,11 @@
 {
   "name": "swagmock",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha.1",
   "description": "Mock data generator for swagger api",
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint lib",
-    "test": "mocha tests"
+    "test": "mocha tests/*.js"
   },
   "repository": {
     "type": "git",
