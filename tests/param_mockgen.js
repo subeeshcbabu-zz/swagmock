@@ -10,10 +10,10 @@ Number.isInteger = Number.isInteger || function(value) {
 
 describe('Parameter Mock generator', function () {
     var apiPath = Path.resolve(__dirname, 'fixture/petstore.json');
+    var swagmock = Swagmock(apiPath);
     it('should generate parameter mock for path /store/order/{orderId}', function(done) {
-        Swagmock(apiPath,{
+        swagmock.parameters({
             path: '/store/order/{orderId}',
-            mockParams: true,
             operation: 'get'
         }, function(err, mock) {
             Assert.ok(!err, 'No error');
@@ -28,9 +28,8 @@ describe('Parameter Mock generator', function () {
     });
 
     it('should generate parameter mock for path /pet/findByStatus', function(done) {
-        Swagmock(apiPath,{
+        swagmock.parameters({
             path: '/pet/findByStatus',
-            mockParams: true,
             operation: 'get'
         }, function(err, mock) {
             Assert.ok(!err, 'No error');
@@ -46,9 +45,8 @@ describe('Parameter Mock generator', function () {
     });
 
     it('should generate parameter mock for path /pet/{petId}', function(done) {
-        Swagmock(apiPath,{
+        swagmock.parameters({
             path: '/pet/{petId}',
-            mockParams: true,
             operation: 'get'
         }, function(err, mock) {
             Assert.ok(!err, 'No error');
@@ -63,9 +61,8 @@ describe('Parameter Mock generator', function () {
     });
 
     it('should generate parameter mock for path /pet/{petId}/uploadImage', function(done) {
-        Swagmock(apiPath,{
+        swagmock.parameters({
             path: '/pet/{petId}/uploadImage',
-            mockParams: true,
             operation: 'post'
         }, function(err, mock) {
             Assert.ok(!err, 'No error');
@@ -84,9 +81,8 @@ describe('Parameter Mock generator', function () {
     });
 
     it('should generate parameter mock for path /store/inventory', function(done) {
-        Swagmock(apiPath,{
+        swagmock.parameters({
             path: '/store/inventory',
-            mockParams: true,
             operation: 'get'
         }, function(err, mock) {
             Assert.ok(!err, 'No error');
@@ -98,9 +94,8 @@ describe('Parameter Mock generator', function () {
     });
 
     it('should generate parameter mock for path /store/order', function(done) {
-        Swagmock(apiPath,{
+        swagmock.parameters({
             path: '/store/order',
-            mockParams: true,
             operation: 'post'
         }, function(err, mock) {
             Assert.ok(!err, 'No error');
@@ -122,9 +117,8 @@ describe('Parameter Mock generator', function () {
     });
 
     it('should generate parameter mock for path /user/createWithArray', function(done) {
-        Swagmock(apiPath,{
+        swagmock.parameters({
             path: '/user/createWithArray',
-            mockParams: true,
             operation: 'post'
         }, function(err, mock) {
             Assert.ok(!err, 'No error');
@@ -145,4 +139,4 @@ describe('Parameter Mock generator', function () {
             done();
         });
     });
-})
+});
