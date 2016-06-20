@@ -39,7 +39,7 @@ describe('Parameter Mock generator', function () {
             Assert.ok(params.query, 'Generated query parameter');
             Assert.ok(params.query[0].name === 'status', 'generated mock parameter for status');
             Assert.ok(params.query[0].value, 'OK value for status');
-            Assert.ok(params.query[0].seperator === 'multi' , 'OK multi seperator');
+            Assert.ok(params.query[0].separator === 'multi' , 'OK multi separator');
             done();
         });
     });
