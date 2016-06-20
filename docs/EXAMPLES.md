@@ -6,7 +6,7 @@ Mock examples are based on the above swagger api.
 
 ## Responses
 
-### Response mock for the path `/pet/findByStatus`, operation `get` and response `200`.
+#### Response mock for the path `/pet/findByStatus`, operation `get` and response `200`.
 
 ```javascript
     var apiPath = 'http://petstore.swagger.io/v2/swagger.json';
@@ -21,7 +21,7 @@ Mock examples are based on the above swagger api.
         console.log(mock);    
     });
 ```
-#### Mock sample
+##### Mock sample
 
 ```json
     {
@@ -45,7 +45,7 @@ Mock examples are based on the above swagger api.
     }
 ```
 
-### Response mock for the path `/store/order/{orderId}`, get operation and all responses.
+#### Response mock for the path `/store/order/{orderId}`, get operation and all responses.
 
 ```javascript
     var mockgen = Swagmock(apiPath);
@@ -58,7 +58,7 @@ Mock examples are based on the above swagger api.
     });
 ```
 
-#### Mock sample
+##### Mock sample
 
 ```json
     {
@@ -77,7 +77,7 @@ Mock examples are based on the above swagger api.
     }
 
 ```
-### Response mock for the path `/store/order/{orderId}` and all operations and all responses.
+#### Response mock for the path `/store/order/{orderId}` and all operations and all responses.
 
 ```javascript
     var mockgen = Swagmock(apiPath);
@@ -89,7 +89,7 @@ Mock examples are based on the above swagger api.
     });
 ```
 
-#### Mock sample
+##### Mock sample
 
 ```json
 
@@ -118,7 +118,7 @@ Mock examples are based on the above swagger api.
 
 ```
 
-### Response mock for all the paths.
+#### Response mock for all the paths.
 
 ```javascript
     var mockgen = Swagmock(apiPath);
@@ -129,7 +129,7 @@ Mock examples are based on the above swagger api.
 ```
 ## Parameters
 
-### Parameter mock for the path `/pet/findByStatus` and operation `get`.
+#### Parameter mock for the path `/pet/findByStatus` and operation `get`.
 
 ```javascript
     var mockgen = Swagmock(apiPath);
@@ -141,7 +141,7 @@ Mock examples are based on the above swagger api.
         console.log(mock);    
     });
 ```
-#### Mock sample
+##### Mock sample
 
 ```json
     {
@@ -155,7 +155,7 @@ Mock examples are based on the above swagger api.
     }
 ```
 
-### Parameter mock for the path `/store/order/{orderId}` and all operations.
+#### Parameter mock for the path `/store/order/{orderId}` and all operations.
 
 ```javascript
     var mockgen = Swagmock(apiPath);
@@ -167,7 +167,7 @@ Mock examples are based on the above swagger api.
     });
 ```
 
-#### Mock sample
+##### Mock sample
 
 ```json
 
@@ -191,7 +191,7 @@ Mock examples are based on the above swagger api.
     }
 
 ```
-### Parameter mock for all the paths.
+#### Parameter mock for all the paths.
 
 ```javascript
     var mockgen = Swagmock(apiPath);
@@ -203,7 +203,7 @@ Mock examples are based on the above swagger api.
 
 ## Responses and Parameters
 
-## For the path `/store/order/{orderId}`
+#### For the path `/store/order/{orderId}`
 
 ```javascript
     var mockgen = Swagmock(apiPath);
@@ -217,7 +217,7 @@ Mock examples are based on the above swagger api.
     });
 ```
 
-## For the path `/store/order/{orderId}` and operation `get`
+#### For the path `/store/order/{orderId}` and operation `get`
 
 ```javascript
     var mockgen = Swagmock(apiPath);
@@ -232,7 +232,7 @@ Mock examples are based on the above swagger api.
     });
 ```
 
-## For all the path
+#### For all the path
 
 ```javascript
     var mockgen = Swagmock(apiPath);
