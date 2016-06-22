@@ -148,7 +148,7 @@ Mock examples are based on the above swagger api.
         "parameters": {
             "query": [{
                 "name": "status",
-                "value": "status=available&status=pending",
+                "value": [ "available", "pending" ],
                 "separator": "multi"
             }]
         }

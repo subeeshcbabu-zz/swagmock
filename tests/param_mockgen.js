@@ -124,6 +124,7 @@ describe('Parameter Mock generator', function () {
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
             var params = mock.parameters;
+            console.log("===>", params);
             Assert.ok(params, 'Generated parameters');
 
             Assert.ok(params.body, 'Generated body parameter');
