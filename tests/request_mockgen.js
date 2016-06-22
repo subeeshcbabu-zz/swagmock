@@ -21,6 +21,7 @@ describe('Request Mock generator', function () {
             var request = mock.request;
             Assert.ok(request, 'Generated request');
             Assert.ok(request.pathname, 'Generated pathname request');
+            Assert.ok(request.path, 'Generated path request');
             done();
         });
     });

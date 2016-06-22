@@ -244,3 +244,45 @@ Mock examples are based on the above swagger api.
         console.log(mock);
     });
 ```
+
+## Requests
+
+```javascript
+    mockgen.requests({
+        path: '/pet/findByStatus',
+        operation: 'get'
+    }, function (error, mock) {
+
+        console.log(mock);
+        //This would print:
+        // {
+        //     "request": {
+        //         "query": "status=available&status=pending"
+        //     }
+        // }
+    });
+```
+
+### Mock samples
+
+- Resolved {petId} with the `petId` parameter mock
+
+```json
+    {
+        "request" : {
+            "pathname": "/pet/123456",
+            "path": "/pet/123456"
+        }
+    }
+```
+- `path` and `query`
+
+```json
+    {
+        "request" : {
+            "pathname": "/pet/123456",
+            "query": "foo=hello&bar=hi",
+            "path": "/pet/123456?foo=hello&bar=hi"
+        }
+    }
+```

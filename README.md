@@ -123,7 +123,9 @@ This generates the mock request object based on the `options`. `requests` API re
 
 ### data
 
-`request` Object will have following possible properties `query`, `header`, `path`, `formData` or `body`.
+`request` Object will have following possible properties `query`, `header`, `pathname`, `path`, `formData` or `body` based on the `parameters` defined for the path and operation.
+
+Mock request [Path templates](http://swagger.io/specification/#pathTemplating) are resolved using path parameters.
 
 ```javascript
     mockgen.requests({
@@ -140,4 +142,5 @@ This generates the mock request object based on the `options`. `requests` API re
         // }
     });
 ```
+
 ## [Examples](docs/EXAMPLES.md)
