@@ -111,8 +111,6 @@ This generates the mock parameters objects based on the `options`
 
 This generates the mock request object based on the `options`. `requests` API resolves the `parameters` mock data to generate the `request` mock object useful for unit tests.
 
-`request` Object will have following possible properties `query`, `header`, `path`, `formData` or `body`.
-
 * `options` - (*Object*) - (required) - Options to control the mock generation.
 
 * `callback` -  (*Function*) - (required) - `function (error, mock)`.
@@ -122,6 +120,10 @@ This generates the mock request object based on the `options`. `requests` API re
 * `path` - (*String*) - (optional) - The path for which the parameters mock need to be generated. For example `/pet/findByStatus`, `/pet` etc. If a `path` is not specified, mock parameters will be generated for all the paths defined by the swagger api.
 
 * `operation` - (*String*) - (optional) - The operation for which the parameters mock need to be generated. For example `get`, `post` etc. If `operation` is not specified, mock parameters will be generated for all the operations defined by the swagger api.
+
+### data
+
+`request` Object will have following possible properties `query`, `header`, `path`, `formData` or `body`.
 
 ```javascript
     mockgen.requests({
