@@ -556,7 +556,16 @@
                         "description": "successful operation"
                     }
                 }
-            }
+            },
+            "parameters": [
+                {
+                    "name": "common",
+                    "in": "query",
+                    "description": "A common parameter",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
         },
         "/user/{username}": {
             "get": {

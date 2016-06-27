@@ -124,7 +124,6 @@ describe('Parameter Mock generator', function () {
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
             var params = mock.parameters;
-            console.log("===>", params);
             Assert.ok(params, 'Generated parameters');
 
             Assert.ok(params.body, 'Generated body parameter');
@@ -137,6 +136,21 @@ describe('Parameter Mock generator', function () {
             Assert.ok(Number.isInteger(user.userStatus), 'user.userStatus is integer');
             Assert.ok(typeof user.username === 'string', 'user.username is string');
 
+            done();
+        });
+    });
+
+    it('should generate parameter mock for path /user/logout', function(done) {
+        swagmock.parameters({
+            path: '/user/logout',
+            operation: 'get'
+        }, function(err, mock) {
+            Assert.ok(!err, 'No error');
+            Assert.ok(mock, 'Generated mock');
+            var params = mock.parameters;
+            Assert.ok(params, 'Generated parameters');
+            Assert.ok(params.query, 'Generated path parameter');
+            Assert.ok(params.query[0].name === 'common', 'generated mock parameter for common parameter');
             done();
         });
     });
