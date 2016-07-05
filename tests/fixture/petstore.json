@@ -381,6 +381,7 @@
                     "type": "integer",
                     "maximum": 10.0,
                     "minimum": 1.0,
+                    "multipleOf": 2,
                     "format": "int64"
                 }],
                 "responses": {
