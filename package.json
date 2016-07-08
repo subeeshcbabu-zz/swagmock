@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint lib",
-    "test": "mocha tests/*.js"
+    "test": "mocha tests/*.js",
+    "cover": "istanbul cover _mocha -- tests/*.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "eslint": "^2.13.0",
+    "istanbul": "^0.4.4",
     "mocha": "^2.5.3"
   }
 }
