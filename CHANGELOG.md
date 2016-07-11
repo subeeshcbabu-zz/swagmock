@@ -1,4 +1,4 @@
-# Upcoming release
+# v0.0.3
 
 ## Bugfixes and features
 
