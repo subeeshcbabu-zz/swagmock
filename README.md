@@ -142,5 +142,19 @@ Mock request [Path templates](http://swagger.io/specification/#pathTemplating) a
         // }
     });
 ```
+## Examples
 
-## [Examples](docs/EXAMPLES.md)
+### API
+[Usage](docs/EXAMPLES.md)
+
+### Unit test request mocks
+
+[github api express app](https://github.com/subeeshcbabu/swaggerize-examples/tree/master/express/github-express/tests)
+
+[slack api hapi app](https://github.com/subeeshcbabu/swaggerize-examples/tree/master/hapi/slack/tests)
+
+### Mock response data providers
+
+[spotify api hapi app](https://github.com/subeeshcbabu/swaggerize-examples/tree/master/hapi/spotify/data)
+
+[glugbot api express app](https://github.com/subeeshcbabu/swaggerize-examples/tree/master/express/glugbot-express/tests/api)
