@@ -56,6 +56,10 @@ describe('Parameter Mock generator', function () {
             Assert.ok(params.path, 'Generated path parameter');
             Assert.ok(params.path[0].name === 'petId', 'generated mock parameter for petId');
             Assert.ok(Number.isInteger(params.path[0].value), 'OK value for petId');
+
+            Assert.ok(params.query, 'Generated query parameter');
+            Assert.ok(params.query[0].name === 'petName', 'generated mock parameter for petName');
+            Assert.ok(/awesome+ (pet|cat|bird)/.test(params.query[0].value), 'OK value for petName');
             done();
         });
     });

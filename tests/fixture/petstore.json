@@ -184,6 +184,14 @@
                     "required": true,
                     "type": "integer",
                     "format": "int64"
+                },
+                {
+                    "name": "petName",
+                    "in": "query",
+                    "description": "Name of pet to return",
+                    "required": true,
+                    "type": "string",
+                    "pattern": "awesome+ (pet|cat|bird)"
                 }],
                 "responses": {
                     "200": {
@@ -381,6 +389,7 @@
                     "type": "integer",
                     "maximum": 10.0,
                     "minimum": 1.0,
+                    "multipleOf": 2,
                     "format": "int64"
                 }],
                 "responses": {
