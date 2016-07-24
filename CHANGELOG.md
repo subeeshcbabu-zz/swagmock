@@ -1,3 +1,6 @@
+# Unreleased
+- #11 support additional format options as per json schema (uri, hostname, ipv4, ipv6)
+
 # v0.0.3
 
 ## Bugfixes and features
