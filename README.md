@@ -13,12 +13,14 @@ npm install swagmock
     var apiPath = 'http://petstore.swagger.io/v2/swagger.json';
     var Swagmock = require('swagmock');
     var mockgen = Swagmock(apiPath);
+    var assert = require('assert');
 
     mockgen.responses({
         path: '/pet/findByStatus',
         operation: 'get',
         response: 200
     }, function (error, mock) {
+        assert.ifError(error);
 
         console.log(mock);
         //This would print:
@@ -47,6 +49,7 @@ npm install swagmock
         path: '/pet/findByStatus',
         operation: 'get'
     }, function (error, mock) {
+        assert.ifError(error);
 
         console.log(mock);
         //This would print:
@@ -132,6 +135,7 @@ Mock request [Path templates](http://swagger.io/specification/#pathTemplating) a
         path: '/pet/findByStatus',
         operation: 'get'
     }, function (error, mock) {
+        assert.ifError(error);
 
         console.log(mock);
         //This would print:
