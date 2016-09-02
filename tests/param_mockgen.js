@@ -133,7 +133,7 @@ describe('Parameter Mock generator', function () {
             Assert.ok(params.body, 'Generated body parameter');
             Assert.ok(params.body[0].name === 'body', 'generated mock parameter for body');
             var users = params.body[0].value;
-            Assert.ok(users.length === 2, 'Created a parameter array of users');
+            Assert.ok(users.length === 1, 'Created a parameter array of users');
             var user = users[0];
             Assert.ok(typeof user === 'object', 'OK value for user parameter');
             Assert.ok(Number.isInteger(user.id), 'user.id is integer');

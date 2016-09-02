@@ -30,11 +30,15 @@ describe('Parameters Mock generator', function () {
 
     it('should generate parameter mock for all the path', function(done) {
         swagmock.parameters({}, function(err, mock) {
+            var testMock;
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
             Assert.ok(mock['/pet'], 'Generated mock for path /pet');
             Assert.ok(mock['/pet/findByStatus'], 'Generated mock for path /pet/findByStatus');
             Assert.ok(mock['/pet/findByTags'], 'Generated mock for path /pet/findByTags');
+            //Test minItems
+            testMock = mock['/pet/findByTags'].get.parameters.query[0].value;
+            Assert.ok(testMock.length >= 2, 'tags parameter should have minimum 2 items');
             Assert.ok(mock['/pet/{petId}'], 'Generated mock for path /pet/{petId}');
             Assert.ok(mock['/pet/{petId}/uploadImage'], 'Generated mock for path /pet/{petId}/uploadImage');
             Assert.ok(mock['/store/inventory'], 'Generated mock for path /store/inventory');
@@ -42,7 +46,13 @@ describe('Parameters Mock generator', function () {
             Assert.ok(mock['/store/order/{orderId}'], 'Generated mock for path /store/order/{orderId}');
             Assert.ok(mock['/user'], 'Generated mock for path /user');
             Assert.ok(mock['/user/createWithArray'], 'Generated mock for path /user/createWithArray');
+            //Test the default min and max
+            testMock = mock['/user/createWithArray'].post.parameters.body[0].value;
+            Assert.ok(testMock.length === 1, 'body parameter should have i item (default)');
             Assert.ok(mock['/user/createWithList'], 'Generated mock for path /user/createWithList');
+            //Test maxItems
+            testMock = mock['/user/createWithList'].post.parameters.body[0].value;
+            Assert.ok(testMock.length <= 4, 'body parameter should have maximum 4 items');
             done();
         });
     });
