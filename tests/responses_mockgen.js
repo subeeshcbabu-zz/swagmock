@@ -79,12 +79,16 @@ describe('Responses Mock generator', function () {
 
     it('should generate response mock for all paths', function(done) {
         swagmock.responses({}, function(err, mock) {
+            var testMock;
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
             Assert.ok(mock['/pet'], 'Generated mock for path /pet');
             Assert.ok(mock['/pet/findByStatus'], 'Generated mock for path /pet/findByStatus');
             Assert.ok(mock['/pet/findByTags'], 'Generated mock for path /pet/findByTags');
             Assert.ok(mock['/pet/{petId}'], 'Generated mock for path /pet/{petId}');
+            //test the minItems and MaxItems
+            testMock = mock['/pet/{petId}'].get.responses['200'].tags;
+            Assert.ok(testMock.length <= 5 && testMock.length >= 2, 'tags response should have min 2 and max 5 items');
             Assert.ok(mock['/pet/{petId}/uploadImage'], 'Generated mock for path /pet/{petId}/uploadImage');
             Assert.ok(mock['/store/inventory'], 'Generated mock for path /store/inventory');
             Assert.ok(mock['/store/order'], 'Generated mock for path /store/order');

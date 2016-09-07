@@ -115,7 +115,7 @@ describe('Request Mock generator', function () {
             Assert.ok(request, 'Generated request');
             Assert.ok(request.body, 'Generated body request');
             var users = request.body;
-            Assert.ok(users.length === 2, 'Created a request array of users');
+            Assert.ok(users.length === 1, 'Created a request array of users');
             var user = users[0];
             Assert.ok(typeof user === 'object', 'OK value for user request');
             Assert.ok(Number.isInteger(user.id), 'user.id is integer');

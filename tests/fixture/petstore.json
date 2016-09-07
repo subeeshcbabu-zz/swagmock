@@ -145,6 +145,7 @@
                     "description": "Tags to filter by",
                     "required": true,
                     "type": "array",
+                    "minItems": 2,
                     "items": {
                         "type": "string"
                     },
@@ -495,6 +496,7 @@
                     "required": true,
                     "schema": {
                         "type": "array",
+                        "maxItems": 4,
                         "items": {
                             "$ref": "#/definitions/User"
                         }
@@ -801,6 +803,8 @@
                 },
                 "tags": {
                     "type": "array",
+                    "minItems": 2,
+                    "maxItems": 5,
                     "xml": {
                         "name": "tag",
                         "wrapped": true
