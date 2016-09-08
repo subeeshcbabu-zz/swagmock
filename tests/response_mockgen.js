@@ -24,7 +24,7 @@ describe('Response Mock generator', function () {
             Assert.ok(resp, 'Generated response');
             Assert.ok(Number.isInteger(resp.id), 'id is integer');
             Assert.ok(Number.isInteger(resp.petId), 'petId is integer');
-            Assert.ok(Number.isInteger(resp.quantity), 'quantity is integer');
+            Assert.ok([ 1, 3, 5 ].indexOf(resp.quantity) != -1, 'quantity is integer enum');
             Assert.ok(typeof resp.shipDate === 'string', 'shipDate is string');
             Assert.ok(['placed','approved','delivered'].indexOf(resp.status) !== -1, 'status is enum');
             Assert.ok(typeof resp.complete === 'boolean', 'complete is boolean');

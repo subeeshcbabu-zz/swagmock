@@ -691,6 +691,11 @@
                 },
                 "quantity": {
                     "type": "integer",
+                    "enum": [
+                        1,
+                        3,
+                        5
+                    ],
                     "format": "int32"
                 },
                 "shipDate": {
