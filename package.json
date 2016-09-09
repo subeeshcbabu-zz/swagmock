@@ -1,6 +1,6 @@
 {
   "name": "swagmock",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Mock data generator for swagger api",
   "main": "lib/index.js",
   "scripts": {

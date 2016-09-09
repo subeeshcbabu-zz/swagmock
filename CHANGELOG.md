@@ -1,6 +1,11 @@
-# Unreleased
+# v0.0.4
+## Features
 - #11 support additional format options as per json schema (uri, hostname, ipv4, ipv6)
+
+## Bugfixes
 - Fix the `maxItems` bug and add additional test cases - #16
+- Fix the issue - enum of type integer is not handled properly #21
+- Fix the issue - if example is wrong the mock generated is not as per schema #23
 
 # v0.0.3
 
