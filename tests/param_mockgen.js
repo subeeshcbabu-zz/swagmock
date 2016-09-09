@@ -56,10 +56,29 @@ describe('Parameter Mock generator', function () {
             Assert.ok(params.path, 'Generated path parameter');
             Assert.ok(params.path[0].name === 'petId', 'generated mock parameter for petId');
             Assert.ok(Number.isInteger(params.path[0].value), 'OK value for petId');
-
+            //Test the operation level overrides
+            Assert.ok(params.path[0].value > 1000 && params.path[0].value < 2000, 'OK value for petId');
+            
             Assert.ok(params.query, 'Generated query parameter');
             Assert.ok(params.query[0].name === 'petName', 'generated mock parameter for petName');
             Assert.ok(/awesome+ (pet|cat|bird)/.test(params.query[0].value), 'OK value for petName');
+            done();
+        });
+    });
+
+    it('should generate parameter mock for path /pet/{petId} post - common parameter', function(done) {
+        swagmock.parameters({
+            path: '/pet/{petId}',
+            operation: 'post'
+        }, function(err, mock) {
+            Assert.ok(!err, 'No error');
+            Assert.ok(mock, 'Generated mock');
+            var params = mock.parameters;
+            Assert.ok(params, 'Generated parameters');
+            Assert.ok(params.path, 'Generated path parameter');
+            Assert.ok(params.path[0].name === 'petId', 'generated mock parameter for petId');
+            Assert.ok(Number.isInteger(params.path[0].value), 'OK value for petId');
+
             done();
         });
     });
