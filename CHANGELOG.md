@@ -1,4 +1,4 @@
-# Unreleased
+# v0.0.4
 ## Features
 - #11 support additional format options as per json schema (uri, hostname, ipv4, ipv6)
 
