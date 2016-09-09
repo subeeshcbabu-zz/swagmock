@@ -1,24 +1,18 @@
-var Assert = require('assert');
-var Swagmock = require('../lib');
-var Path = require('path')
-//isInteger pollyfil for pre es6
-Number.isInteger = Number.isInteger || function(value) {
-    return typeof value === "number" &&
-        isFinite(value) &&
-        Math.floor(value) === value;
-};
+const Assert = require('assert');
+const Swagmock = require('../lib');
+const Path = require('path')
 
-describe('Request Mock generator', function () {
-    var apiPath = Path.resolve(__dirname, 'fixture/petstore.json');
-    var swagmock = Swagmock(apiPath);
-    it('should generate request mock for path /store/order/{orderId}', function(done) {
+describe('Request Mock generator', () => {
+    let apiPath = Path.resolve(__dirname, 'fixture/petstore.json');
+    let swagmock = Swagmock(apiPath);
+    it('should generate request mock for path /store/order/{orderId}', (done) => {
         swagmock.requests({
             path: '/store/order/{orderId}',
             operation: 'get'
-        }, function(err, mock) {
+        }, (err, mock) => {
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
-            var request = mock.request;
+            let request = mock.request;
             Assert.ok(request, 'Generated request');
             Assert.ok(request.pathname, 'Generated pathname request');
             Assert.ok(request.path, 'Generated path request');
@@ -26,42 +20,42 @@ describe('Request Mock generator', function () {
         });
     });
 
-    it('should generate request mock for path /pet/findByStatus', function(done) {
+    it('should generate request mock for path /pet/findByStatus', (done) => {
         swagmock.requests({
             path: '/pet/findByStatus',
             operation: 'get'
-        }, function(err, mock) {
+        }, (err, mock) => {
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
-            var request = mock.request;
+            let request = mock.request;
             Assert.ok(request, 'Generated request');
             Assert.ok(request.query, 'Generated query request');
             done();
         });
     });
 
-    it('should generate request mock for path /pet/{petId}', function(done) {
+    it('should generate request mock for path /pet/{petId}', (done) => {
         swagmock.requests({
             path: '/pet/{petId}',
             operation: 'get'
-        }, function(err, mock) {
+        }, (err, mock) => {
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
-            var request = mock.request;
+            let request = mock.request;
             Assert.ok(request, 'Generated parameters');
             Assert.ok(request.pathname, 'Generated path parameter');
             done();
         });
     });
 
-    it('should generate request mock for path /pet/{petId}/uploadImage', function(done) {
+    it('should generate request mock for path /pet/{petId}/uploadImage', (done) => {
         swagmock.requests({
             path: '/pet/{petId}/uploadImage',
             operation: 'post'
-        }, function(err, mock) {
+        }, (err, mock) => {
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
-            var request = mock.request;
+            let request = mock.request;
             Assert.ok(request, 'Generated request');
             Assert.ok(request.pathname, 'Generated path request');
             Assert.ok(request.formData, 'Generated formData request');
@@ -69,30 +63,30 @@ describe('Request Mock generator', function () {
         });
     });
 
-    it('should generate request mock for path /store/inventory', function(done) {
+    it('should generate request mock for path /store/inventory', (done) => {
         swagmock.requests({
             path: '/store/inventory',
             operation: 'get'
-        }, function(err, mock) {
+        }, (err, mock) => {
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
-            var request = mock.request;
+            let request = mock.request;
             Assert.ok(request, 'Generated request');
             done();
         });
     });
 
-    it('should generate request mock for path /store/order', function(done) {
+    it('should generate request mock for path /store/order', (done) => {
         swagmock.requests({
             path: '/store/order',
             operation: 'post'
-        }, function(err, mock) {
+        }, (err, mock) => {
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
-            var request = mock.request;
+            let request = mock.request;
             Assert.ok(request, 'Generated request');
             Assert.ok(request.body, 'Generated body request');
-            var order = request.body;
+            let order = request.body;
             Assert.ok(typeof order === 'object', 'OK value for body');
             Assert.ok(Number.isInteger(order.id), 'order.id is integer');
             Assert.ok(Number.isInteger(order.petId), 'order.petId is integer');
@@ -104,19 +98,19 @@ describe('Request Mock generator', function () {
         });
     });
 
-    it('should generate request mock for path /user/createWithArray', function(done) {
+    it('should generate request mock for path /user/createWithArray', (done) => {
         swagmock.requests({
             path: '/user/createWithArray',
             operation: 'post'
-        }, function(err, mock) {
+        }, (err, mock) => {
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
-            var request = mock.request;
+            let request = mock.request;
             Assert.ok(request, 'Generated request');
             Assert.ok(request.body, 'Generated body request');
-            var users = request.body;
+            let users = request.body;
             Assert.ok(users.length === 1, 'Created a request array of users');
-            var user = users[0];
+            let user = users[0];
             Assert.ok(typeof user === 'object', 'OK value for user request');
             Assert.ok(Number.isInteger(user.id), 'user.id is integer');
             Assert.ok(Number.isInteger(user.userStatus), 'user.userStatus is integer');
