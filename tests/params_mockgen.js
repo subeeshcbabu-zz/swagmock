@@ -18,7 +18,7 @@ describe('Parameters Mock generator',  () => {
             Assert.ok(params, 'Generated parameters');
             Assert.ok(params.path, 'Generated path parameter');
             Assert.ok(params.path[0].name === 'orderId', 'generated mock parameter for orderId');
-            Assert.ok(params.path[0].value > 0 && params.path[0].value < 10, 'OK value for orderId');
+            Assert.ok(params.path[0].value >= 1 && params.path[0].value <= 10, 'OK value for orderId');
             done();
         }).catch(err => {
             Assert.ok(!err, 'No error');

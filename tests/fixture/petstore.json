@@ -290,6 +290,10 @@
                     "description": "ID of pet to update",
                     "required": true,
                     "type": "integer",
+                    "exclusiveMinimum": true,
+                    "exclusiveMaximum": true,
+                    "minimum": 1000,
+                    "maximum": 1010,
                     "format": "int64"
                 }, {
                     "name": "additionalMetadata",
@@ -754,6 +758,9 @@
                 },
                 "userStatus": {
                     "type": "integer",
+                    "multipleOf": 100,
+                    "minimum": 1000,
+                    "exclusiveMinimum": true,
                     "format": "int32",
                     "description": "User Status"
                 }
