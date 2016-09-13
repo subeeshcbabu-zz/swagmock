@@ -203,6 +203,25 @@
                     "required": true,
                     "type": "string",
                     "pattern": "awesome+ (pet|cat|bird)"
+                },
+                {
+                    "name": "petWeight",
+                    "in": "query",
+                    "description": "Weight of pet to return",
+                    "required": false,
+                    "type": "number",
+                    "minimum": 10,
+                    "maximum": 500
+                },
+                {
+                    "name": "bmi",
+                    "in": "query",
+                    "description": "bmi of the pet",
+                    "required": false,
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "multipleOf": 0.2
                 }],
                 "responses": {
                     "200": {
