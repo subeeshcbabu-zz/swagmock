@@ -1,8 +1,11 @@
 {
   "name": "swagmock",
-  "version": "0.0.4",
+  "version": "1.0.0-alpha.1",
   "description": "Mock data generator for swagger api",
   "main": "lib/index.js",
+  "engines": {
+    "node": ">=6.x"
+  },
   "scripts": {
     "lint": "eslint lib",
     "test": "mocha tests/*.js",
@@ -27,6 +30,7 @@
   },
   "homepage": "https://github.com/subeeshcbabu/swagmock#readme",
   "dependencies": {
+    "call-me-maybe": "^1.0.1",
     "chance": "^1.0.3",
     "moment": "^2.13.0",
     "randexp": "^0.4.2",

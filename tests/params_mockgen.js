@@ -1,37 +1,36 @@
-var Assert = require('assert');
-var Swagmock = require('../lib');
-var Path = require('path')
-//isInteger pollyfil for pre es6
-Number.isInteger = Number.isInteger || function(value) {
-    return typeof value === "number" &&
-        isFinite(value) &&
-        Math.floor(value) === value;
-};
+const Assert = require('assert');
+const Swagmock = require('../lib');
+const Path = require('path')
 
-describe('Parameters Mock generator', function () {
-    var apiPath = Path.resolve(__dirname, 'fixture/petstore.json');
-    var swagmock = Swagmock(apiPath);
-    it('should generate parameter mock for path /store/order/{orderId} for all operations', function(done) {
-        swagmock.parameters({
+describe('Parameters Mock generator',  () => {
+    let apiPath = Path.resolve(__dirname, 'fixture/petstore.json');
+    let swagmock = Swagmock(apiPath);
+    it('should generate parameter mock for path /store/order/{orderId} for all operations', (done) => {
+        let mockgen = swagmock.parameters({
             path: '/store/order/{orderId}'
-        }, function(err, mock) {
-            Assert.ok(!err, 'No error');
+        });
+        //Promise test case
+        mockgen.then(mock => {
             Assert.ok(mock, 'Generated mock');
             Assert.ok(mock.get, 'Generated mock for get operation');
             Assert.ok(mock.delete, 'Generated mock for delete operation');
-            var params = mock.get.parameters;
+            let params = mock.get.parameters;
             Assert.ok(params, 'Generated parameters');
             Assert.ok(params.path, 'Generated path parameter');
             Assert.ok(params.path[0].name === 'orderId', 'generated mock parameter for orderId');
-            Assert.ok(params.path[0].value > 0 && params.path[0].value < 10, 'OK value for orderId');
+            Assert.ok(params.path[0].value >= 1 && params.path[0].value <= 10, 'OK value for orderId');
+            done();
+        }).catch(err => {
+            Assert.ok(!err, 'No error');
             done();
         });
     });
 
-    it('should generate parameter mock for all the path', function(done) {
-        swagmock.parameters({}, function(err, mock) {
-            var testMock;
-            Assert.ok(!err, 'No error');
+    it('should generate parameter mock for all the path', (done) => {
+        let mockgen = swagmock.parameters({});
+        //Promise test case
+        mockgen.then(mock => {
+            let testMock;
             Assert.ok(mock, 'Generated mock');
             Assert.ok(mock['/pet'], 'Generated mock for path /pet');
             Assert.ok(mock['/pet/findByStatus'], 'Generated mock for path /pet/findByStatus');
@@ -53,6 +52,9 @@ describe('Parameters Mock generator', function () {
             //Test maxItems
             testMock = mock['/user/createWithList'].post.parameters.body[0].value;
             Assert.ok(testMock.length <= 4, 'body parameter should have maximum 4 items');
+            done();
+        }).catch(err => {
+            Assert.ok(!err, 'No error');
             done();
         });
     });
