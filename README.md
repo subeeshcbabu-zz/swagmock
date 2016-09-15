@@ -16,8 +16,8 @@ npm install swagmock
     // 1) A relative or absolute path to the Swagger api document.
     // 2) A swagger api Object.
     // 3) A promise (or a `thenable`) that resolves to the swagger api Object.
-    // If the api Object is already validated and dereferenced ($ref are resolved ),
-    // set the validated : true is options.
+    // Set the `validated` : `true`  in `options`, if the api Object is already validated
+    // and dereferenced ($ref are resolved ).
 ```
 
 Promise response:
