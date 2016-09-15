@@ -1,3 +1,14 @@
+# v1.0.0
+## Features
+- es6 support and node engine changed to 6.x
+- promise response if callback is not provided as an argument #20
+- option to set validated = true to generate mocks for already parsed api #24
+- parameter override at operation level #25
+
+## Bugfixes
+- exclusive limit issue #27 and multipleOf max value enhancement #26
+- mock gen issue for type number with minimum =0 #28
+
 # v0.0.4
 ## Features
 - #11 support additional format options as per json schema (uri, hostname, ipv4, ipv6)
