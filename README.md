@@ -15,7 +15,7 @@ npm install swagmock
     // api Can be one of the following.
     // 1) A relative or absolute path to the Swagger api document.
     // 2) A swagger api Object.
-    // 3) A promise that resolves to the swagger api Object. should be a `thenable`.
+    // 3) A promise (or a `thenable`) that resolves to the swagger api Object.
     // If the api Object is already validated and dereferenced ($ref are resolved ),
     // set the validated : true is options.
 
@@ -49,8 +49,7 @@ Check the [API](README.md#api) for more details.
         operation: 'get',
         response: 200
     }).then(mock => {
-        console.log(mock);
-        // This would print:
+        console.log(mock); // This would print:
         // {
         //     "responses": [{
         //         "id": 2530624032210944,
@@ -73,14 +72,15 @@ Check the [API](README.md#api) for more details.
     }).catch(error => {
         assert.ifError(error);
     });
+```
 
+```javascript
 
     mockgen.parameters({
         path: '/pet/findByStatus',
         operation: 'get'
     }).then(mock => {
-        console.log(mock);
-        //This would print:
+        console.log(mock);//This would print:
         // {
         //     "parameters": {
         //         "query": [{
@@ -103,17 +103,17 @@ Check [Examples](docs/EXAMPLES.md) for more details on mock generators.
 `Swagmock(api, [options])`
 
 * `api` - (*Object*) or (*String*) or (*Promise*) - (required) - api can be one of the following.
-    - A relative or absolute path to the Swagger api documnet.
+    - A relative or absolute path to the Swagger api document.
     - A URL of the Swagger api document.
     - The swagger api Object
-    - A promise that resolves to the swagger api Object
+    - A promise (or a `thenable`) that resolves to the swagger api Object
 
 * `options` - (*Object*) - (optional) - Additional options to create the mock generator.
-    - `validated` -  Set this property to `true` if the api is already validated against swagger schema and already dereferenced all the `$ref`. This is really useful to generate mocks for parsed api specs. Default value for this is `false` and the api will validated using [swagger-parser valiadte](https://github.com/BigstickCarpet/swagger-parser/blob/master/docs/swagger-parser.md#validateapi-options-callback).
+    - `validated` -  Set this property to `true` if the api is already validated against swagger schema and already dereferenced all the `$ref`. This is really useful to generate mocks for parsed api specs. Default value for this is `false` and the api will be validated using [swagger-parser validate](https://github.com/BigstickCarpet/swagger-parser/blob/master/docs/swagger-parser.md#validateapi-options-callback).
 
 ## responses
 
-`mockgen.responses(options, callback)`
+`mockgen.responses(options, [callback])`
 
 This generates the mock response objects based on the `options`
 
@@ -131,7 +131,7 @@ This generates the mock response objects based on the `options`
 
 ## parameters
 
-`mockgen.parameters(options, callback)`
+`mockgen.parameters(options, [callback])`
 
 This generates the mock parameters objects based on the `options`
 
@@ -148,7 +148,7 @@ This generates the mock parameters objects based on the `options`
 
 ## requests
 
-`mockgen.requests(options, callback)`
+`mockgen.requests(options, [callback])`
 
 This generates the mock request object based on the `options`. `requests` API resolves the `parameters` mock data to generate the `request` mock object useful for unit tests.
 
