@@ -18,18 +18,25 @@ npm install swagmock
     // 3) A promise (or a `thenable`) that resolves to the swagger api Object.
     // If the api Object is already validated and dereferenced ($ref are resolved ),
     // set the validated : true is options.
+```
 
-    //Promise response
+Promise response:
+
+```javascript
     let responseMock = Mockgen.responses({}); //returns a promise that resolves to response mock
     responseMock.then(mock => {
         //Use mock here
     }).catch(error => {
-        assert.ifError(error);
+        Assert.ifError(error);
     });
+```
 
-    //Callback style
+Callback style:
+
+```javascript
+
     Mockgen.responses({ path: '/somepath'}, (error, mock) => {
-        assert.ifError(error);
+        Assert.ifError(error);
         //Use mock here
     });
 ```
@@ -38,12 +45,18 @@ Check the [API](README.md#api) for more details.
 
 ## Example
 
+Initialize the mock generator
+
 ```javascript
     const apiPath = 'http://petstore.swagger.io/v2/swagger.json';
+    let Assert = require('assert');
     let Swagmock = require('swagmock');
     let Mockgen = Swagmock(apiPath);
-    let Assert = require('assert');
+```
 
+Response mock generation:
+
+```javascript
     mockgen.responses({
         path: '/pet/findByStatus',
         operation: 'get',
@@ -70,9 +83,11 @@ Check the [API](README.md#api) for more details.
         //     }]
         // }
     }).catch(error => {
-        assert.ifError(error);
+        Assert.ifError(error);
     });
 ```
+
+Parameters mock generation:
 
 ```javascript
 
@@ -91,7 +106,7 @@ Check the [API](README.md#api) for more details.
         //     }
         // }
     }).catch(error => {
-        assert.ifError(error);
+        Assert.ifError(error);
     })
 
 ```
