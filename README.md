@@ -10,20 +10,47 @@ npm install swagmock
 ## Usage
 
 ```javascript
-    var apiPath = 'http://petstore.swagger.io/v2/swagger.json';
-    var Swagmock = require('swagmock');
-    var mockgen = Swagmock(apiPath);
-    var assert = require('assert');
+    let Swagmock = require('swagmock');
+    let Mockgen = Swagmock(api, options);
+    // api Can be one of the following.
+    // 1) A relative or absolute path to the Swagger api document.
+    // 2) A swagger api Object.
+    // 3) A promise that resolves to the swagger api Object. should be a `thenable`.
+    // If the api Object is already validated and dereferenced ($ref are resolved ),
+    // set the validated : true is options.
+
+    //Promise response
+    let responseMock = Mockgen.responses({}); //returns a promise that resolves to response mock
+    responseMock.then(mock => {
+        //Use mock here
+    }).catch(error => {
+        assert.ifError(error);
+    });
+
+    //Callback style
+    Mockgen.responses({ path: '/somepath'}, (error, mock) => {
+        assert.ifError(error);
+        //Use mock here
+    });
+```
+
+Check the [API](README.md#api) for more details.
+
+## Example
+
+```javascript
+    const apiPath = 'http://petstore.swagger.io/v2/swagger.json';
+    let Swagmock = require('swagmock');
+    let Mockgen = Swagmock(apiPath);
+    let Assert = require('assert');
 
     mockgen.responses({
         path: '/pet/findByStatus',
         operation: 'get',
         response: 200
-    }, function (error, mock) {
-        assert.ifError(error);
-
+    }).then(mock => {
         console.log(mock);
-        //This would print:
+        // This would print:
         // {
         //     "responses": [{
         //         "id": 2530624032210944,
@@ -43,14 +70,15 @@ npm install swagmock
         //         "status": "pending"
         //     }]
         // }
+    }).catch(error => {
+        assert.ifError(error);
     });
+
 
     mockgen.parameters({
         path: '/pet/findByStatus',
         operation: 'get'
-    }, function (error, mock) {
-        assert.ifError(error);
-
+    }).then(mock => {
         console.log(mock);
         //This would print:
         // {
@@ -62,16 +90,26 @@ npm install swagmock
         //         }]
         //     }
         // }
-    });
+    }).catch(error => {
+        assert.ifError(error);
+    })
+
 ```
 
 Check [Examples](docs/EXAMPLES.md) for more details on mock generators.
 
 ## API
 
-`Swagmock(apiPath)`
+`Swagmock(api, [options])`
 
-* `apiPath` - (*String*) - (required) - The url or local path of the Swagger api.
+* `api` - (*Object*) or (*String*) or (*Promise*) - (required) - api can be one of the following.
+    - A relative or absolute path to the Swagger api documnet.
+    - A URL of the Swagger api document.
+    - The swagger api Object
+    - A promise that resolves to the swagger api Object
+
+* `options` - (*Object*) - (optional) - Additional options to create the mock generator.
+    - `validated` -  Set this property to `true` if the api is already validated against swagger schema and already dereferenced all the `$ref`. This is really useful to generate mocks for parsed api specs. Default value for this is `false` and the api will validated using [swagger-parser valiadte](https://github.com/BigstickCarpet/swagger-parser/blob/master/docs/swagger-parser.md#validateapi-options-callback).
 
 ## responses
 
@@ -81,7 +119,7 @@ This generates the mock response objects based on the `options`
 
 * `options` - (*Object*) - (required) - Options to control the mock generation.
 
-* `callback` -  (*Function*) - (required) - `function (error, mock)`.
+* `callback` -  (*Function*) - (optional) - `function (error, mock)`. If a callback is not provided a `Promise` will be returned.
 
 ### options
 
@@ -99,7 +137,7 @@ This generates the mock parameters objects based on the `options`
 
 * `options` - (*Object*) - (required) - Options to control the mock generation.
 
-* `callback` -  (*Function*) - (required) - `function (error, mock)`.
+* `callback` -  (*Function*) - (optional) - `function (error, mock)`. If a callback is not provided a `Promise` will be returned.
 
 ### options
 
@@ -116,7 +154,7 @@ This generates the mock request object based on the `options`. `requests` API re
 
 * `options` - (*Object*) - (required) - Options to control the mock generation.
 
-* `callback` -  (*Function*) - (required) - `function (error, mock)`.
+* `callback` -  (*Function*) - (optional) - `function (error, mock)`. If a callback is not provided a `Promise` will be returned.
 
 ### options
 
