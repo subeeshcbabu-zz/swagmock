@@ -58,8 +58,19 @@ describe('Parameter Mock generator', function () {
             Assert.ok(Number.isInteger(params.path[0].value), 'OK value for petId');
             Assert.ok(params.path[0].value >= 1000 && params.path[0].value <= 2000, 'OK value for petId');
             Assert.ok(params.query, 'Generated query parameter');
-            Assert.ok(params.query[0].name === 'petName', 'generated mock parameter for petName');
-            Assert.ok(/awesome+ (pet|cat|bird)/.test(params.query[0].value), 'OK value for petName');
+            params.query.forEach(param => {
+                if (param.name === 'petName') {
+                    Assert.ok(/awesome+ (pet|cat|bird)/.test(param.value), 'OK value for petName');
+                }
+                if (param.name === 'petWeight') {
+                    Assert.ok(Number.isFinite(param.value), 'OK value for petWeight');
+                    Assert.ok(param.value <= 500 && param.value >= 10, 'OK value for petWeight');
+                }
+                if (param.name === 'bmi') {
+                    Assert.ok(Number.isFinite(param.value), 'OK value for bmi');
+                    Assert.ok(param.value <= 1 && param.value >= 0, 'OK value for bmi');
+                }
+            });
             done();
         });
     });
