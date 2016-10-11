@@ -9,7 +9,9 @@
 - exclusive limit issue #27 and multipleOf max value enhancement #26
 - mock gen issue for type number with minimum =0 #28
 
-# v0.0.5 (Published after 1.0.0. Back porting the bug fixes for pre node v6)
+# v0.0.5 
+
+(Published after 1.0.0. Back porting the bug fixes for pre node v6)
 
 - exclusive limit issue #27 and multipleOf max value enhancement #26
 - mock gen issue for type number with minimum =0 #28
