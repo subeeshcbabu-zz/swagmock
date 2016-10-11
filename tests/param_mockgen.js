@@ -22,7 +22,7 @@ describe('Parameter Mock generator', function () {
             Assert.ok(params, 'Generated parameters');
             Assert.ok(params.path, 'Generated path parameter');
             Assert.ok(params.path[0].name === 'orderId', 'generated mock parameter for orderId');
-            Assert.ok(params.path[0].value > 0 && params.path[0].value < 10, 'OK value for orderId');
+            Assert.ok(params.path[0].value >= 1 && params.path[0].value <= 10, 'OK value for orderId');
             done();
         });
     });
@@ -56,7 +56,7 @@ describe('Parameter Mock generator', function () {
             Assert.ok(params.path, 'Generated path parameter');
             Assert.ok(params.path[0].name === 'petId', 'generated mock parameter for petId');
             Assert.ok(Number.isInteger(params.path[0].value), 'OK value for petId');
-
+            Assert.ok(params.path[0].value >= 1000 && params.path[0].value <= 2000, 'OK value for petId');
             Assert.ok(params.query, 'Generated query parameter');
             Assert.ok(params.query[0].name === 'petName', 'generated mock parameter for petName');
             Assert.ok(/awesome+ (pet|cat|bird)/.test(params.query[0].value), 'OK value for petName');
@@ -76,7 +76,7 @@ describe('Parameter Mock generator', function () {
             Assert.ok(params.path, 'Generated path parameter');
             Assert.ok(params.path[0].name === 'petId', 'generated mock parameter for petId');
             Assert.ok(Number.isInteger(params.path[0].value), 'OK value for petId');
-
+            Assert.ok(params.path[0].value > 1000 && params.path[0].value < 1010, 'OK value for petId');
             Assert.ok(params.formData, 'Generated formData parameter');
             Assert.ok(params.formData[0].name === 'additionalMetadata', 'generated mock parameter for additionalMetadata');
             Assert.ok(typeof params.formData[0].value === 'string', 'OK value for additionalMetadata');
@@ -138,6 +138,8 @@ describe('Parameter Mock generator', function () {
             Assert.ok(typeof user === 'object', 'OK value for user parameter');
             Assert.ok(Number.isInteger(user.id), 'user.id is integer');
             Assert.ok(Number.isInteger(user.userStatus), 'user.userStatus is integer');
+            Assert.ok(user.userStatus > 1000, 'user.userStatus is greater than 1000');
+            Assert.ok(user.userStatus % 100 === 0, 'user.userStatus is multipleOf 100');
             Assert.ok(typeof user.username === 'string', 'user.username is string');
 
             done();
