@@ -1,6 +1,7 @@
 var Assert = require('assert');
 var Swagmock = require('../lib');
-var Path = require('path')
+var Path = require('path');
+var Util = require('../lib/util');
 //isInteger pollyfil for pre es6
 Number.isInteger = Number.isInteger || function(value) {
     return typeof value === "number" &&
@@ -58,16 +59,16 @@ describe('Parameter Mock generator', function () {
             Assert.ok(Number.isInteger(params.path[0].value), 'OK value for petId');
             Assert.ok(params.path[0].value >= 1000 && params.path[0].value <= 2000, 'OK value for petId');
             Assert.ok(params.query, 'Generated query parameter');
-            params.query.forEach(param => {
+            params.query.forEach(function (param) {
                 if (param.name === 'petName') {
                     Assert.ok(/awesome+ (pet|cat|bird)/.test(param.value), 'OK value for petName');
                 }
                 if (param.name === 'petWeight') {
-                    Assert.ok(Number.isFinite(param.value), 'OK value for petWeight');
+                    Assert.ok(Util.isFinite(param.value), 'OK value for petWeight');
                     Assert.ok(param.value <= 500 && param.value >= 10, 'OK value for petWeight');
                 }
                 if (param.name === 'bmi') {
-                    Assert.ok(Number.isFinite(param.value), 'OK value for bmi');
+                    Assert.ok(Util.isFinite(param.value), 'OK value for bmi');
                     Assert.ok(param.value <= 1 && param.value >= 0, 'OK value for bmi');
                 }
             });
