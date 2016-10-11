@@ -184,6 +184,8 @@
                     "description": "ID of pet to return",
                     "required": true,
                     "type": "integer",
+                    "minimum": 1000,
+                    "maximum": 2000,
                     "format": "int64"
                 },
                 {
@@ -193,6 +195,25 @@
                     "required": true,
                     "type": "string",
                     "pattern": "awesome+ (pet|cat|bird)"
+                },
+                {
+                    "name": "petWeight",
+                    "in": "query",
+                    "description": "Weight of pet to return",
+                    "required": false,
+                    "type": "number",
+                    "minimum": 10,
+                    "maximum": 500
+                },
+                {
+                    "name": "bmi",
+                    "in": "query",
+                    "description": "bmi of the pet",
+                    "required": false,
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "multipleOf": 0.2
                 }],
                 "responses": {
                     "200": {
@@ -294,6 +315,10 @@
                     "description": "ID of pet to update",
                     "required": true,
                     "type": "integer",
+                    "exclusiveMinimum": true,
+                    "exclusiveMaximum": true,
+                    "minimum": 1000,
+                    "maximum": 1010,
                     "format": "int64"
                 }, {
                     "name": "additionalMetadata",
@@ -758,6 +783,9 @@
                 },
                 "userStatus": {
                     "type": "integer",
+                    "multipleOf": 100,
+                    "minimum": 1000,
+                    "exclusiveMinimum": true,
                     "format": "int32",
                     "description": "User Status"
                 }

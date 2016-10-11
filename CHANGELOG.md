@@ -1,3 +1,8 @@
+# v0.0.5
+
+- exclusive limit issue #27 and multipleOf max value enhancement #26
+- mock gen issue for type number with minimum =0 #28
+
 # v0.0.4
 ## Features
 - #11 support additional format options as per json schema (uri, hostname, ipv4, ipv6)

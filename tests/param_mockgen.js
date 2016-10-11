@@ -1,6 +1,7 @@
 var Assert = require('assert');
 var Swagmock = require('../lib');
-var Path = require('path')
+var Path = require('path');
+var Util = require('../lib/util');
 //isInteger pollyfil for pre es6
 Number.isInteger = Number.isInteger || function(value) {
     return typeof value === "number" &&
@@ -22,7 +23,7 @@ describe('Parameter Mock generator', function () {
             Assert.ok(params, 'Generated parameters');
             Assert.ok(params.path, 'Generated path parameter');
             Assert.ok(params.path[0].name === 'orderId', 'generated mock parameter for orderId');
-            Assert.ok(params.path[0].value > 0 && params.path[0].value < 10, 'OK value for orderId');
+            Assert.ok(params.path[0].value >= 1 && params.path[0].value <= 10, 'OK value for orderId');
             done();
         });
     });
@@ -56,10 +57,21 @@ describe('Parameter Mock generator', function () {
             Assert.ok(params.path, 'Generated path parameter');
             Assert.ok(params.path[0].name === 'petId', 'generated mock parameter for petId');
             Assert.ok(Number.isInteger(params.path[0].value), 'OK value for petId');
-
+            Assert.ok(params.path[0].value >= 1000 && params.path[0].value <= 2000, 'OK value for petId');
             Assert.ok(params.query, 'Generated query parameter');
-            Assert.ok(params.query[0].name === 'petName', 'generated mock parameter for petName');
-            Assert.ok(/awesome+ (pet|cat|bird)/.test(params.query[0].value), 'OK value for petName');
+            params.query.forEach(function (param) {
+                if (param.name === 'petName') {
+                    Assert.ok(/awesome+ (pet|cat|bird)/.test(param.value), 'OK value for petName');
+                }
+                if (param.name === 'petWeight') {
+                    Assert.ok(Util.isFinite(param.value), 'OK value for petWeight');
+                    Assert.ok(param.value <= 500 && param.value >= 10, 'OK value for petWeight');
+                }
+                if (param.name === 'bmi') {
+                    Assert.ok(Util.isFinite(param.value), 'OK value for bmi');
+                    Assert.ok(param.value <= 1 && param.value >= 0, 'OK value for bmi');
+                }
+            });
             done();
         });
     });
@@ -76,7 +88,7 @@ describe('Parameter Mock generator', function () {
             Assert.ok(params.path, 'Generated path parameter');
             Assert.ok(params.path[0].name === 'petId', 'generated mock parameter for petId');
             Assert.ok(Number.isInteger(params.path[0].value), 'OK value for petId');
-
+            Assert.ok(params.path[0].value > 1000 && params.path[0].value < 1010, 'OK value for petId');
             Assert.ok(params.formData, 'Generated formData parameter');
             Assert.ok(params.formData[0].name === 'additionalMetadata', 'generated mock parameter for additionalMetadata');
             Assert.ok(typeof params.formData[0].value === 'string', 'OK value for additionalMetadata');
@@ -138,6 +150,8 @@ describe('Parameter Mock generator', function () {
             Assert.ok(typeof user === 'object', 'OK value for user parameter');
             Assert.ok(Number.isInteger(user.id), 'user.id is integer');
             Assert.ok(Number.isInteger(user.userStatus), 'user.userStatus is integer');
+            Assert.ok(user.userStatus > 1000, 'user.userStatus is greater than 1000');
+            Assert.ok(user.userStatus % 100 === 0, 'user.userStatus is multipleOf 100');
             Assert.ok(typeof user.username === 'string', 'user.username is string');
 
             done();
