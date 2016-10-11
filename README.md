@@ -1,6 +1,8 @@
 # swagmock
 Mock data generator for swagger api
 
+*Note: Swagmock version `1.0.0` onwards requires `Node.js v6+` (`"engines": {"node": ">=6.x"}`). Please use `v0.0.x` (say `0.0.5`), if you want to run this module on any previous node.js versions.*
+
 ## Install
 
 ```
