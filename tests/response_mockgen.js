@@ -68,6 +68,18 @@ describe('Response Mock generator', function () {
         });
     });
 
+    it('should use the exampleValue for pet name in for path /pet/{petId}', function(done) {
+        swagmock.responses({
+            path: '/pet/{petId}',
+            operation: 'get',
+            response: '200',
+            useExamples: true
+        }, function(err, mock) {
+            Assert.equal(mock.responses.name, 'doggie');
+            done();
+        });
+    });
+
     it('should generate response mock for path /pet/{petId}/uploadImage', function(done) {
         swagmock.responses({
             path: '/pet/{petId}/uploadImage',
