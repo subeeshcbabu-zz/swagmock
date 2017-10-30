@@ -146,6 +146,8 @@ This generates the mock response objects based on the `options`
 
 * `response` - (*String*) - (optional) - The response for which the response mock need to be generated. For example `200`, `400`, `default` etc. If `response` is not specified, mock response will be generated for all the responses defined by the swagger api.
 
+* `useExamples` - (*Boolean*)- (optional) - Should the generated mock make use of example values defined in your swagger.json. Note: invalid example values will create invalid mockdata!
+
 ## parameters
 
 `mockgen.parameters(options, [callback])`
