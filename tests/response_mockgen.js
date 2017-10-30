@@ -1,26 +1,20 @@
-var Assert = require('assert');
-var Swagmock = require('../lib');
-var Path = require('path')
-//isInteger pollyfil for pre es6
-Number.isInteger = Number.isInteger || function(value) {
-    return typeof value === "number" &&
-        isFinite(value) &&
-        Math.floor(value) === value;
-};
+const Assert = require('assert');
+const Swagmock = require('../lib');
+const Path = require('path')
 
-describe('Response Mock generator', function () {
-    var apiPath = Path.resolve(__dirname, 'fixture/petstore.json');
-    var swagmock = Swagmock(apiPath);
+describe('Response Mock generator', () => {
+    let apiPath = Path.resolve(__dirname, 'fixture/petstore.json');
+    let swagmock = Swagmock(apiPath);
 
-    it('should generate response mock for path /store/order/{orderId}', function(done) {
+    it('should generate response mock for path /store/order/{orderId}', (done) => {
         swagmock.responses({
             path: '/store/order/{orderId}',
             operation: 'get',
             response: '200'
-        }, function(err, mock) {
+        }, (err, mock) => {
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
-            var resp = mock.responses;
+            let resp = mock.responses;
             Assert.ok(resp, 'Generated response');
             Assert.ok(Number.isInteger(resp.id), 'id is integer');
             Assert.ok(Number.isInteger(resp.petId), 'petId is integer');
@@ -32,19 +26,19 @@ describe('Response Mock generator', function () {
         });
     });
 
-    it('should generate response mock for path /pet/findByStatus', function(done) {
+    it('should generate response mock for path /pet/findByStatus', (done) => {
         swagmock.responses({
             path: '/pet/findByStatus',
             operation: 'get',
             response: '200'
-        }, function(err, mock) {
+        }, (err, mock) => {
             Assert.ok(!err, 'No error');
 
             Assert.ok(mock, 'Generated mock');
-            var resp = mock.responses;
+            let resp = mock.responses;
             Assert.ok(resp, 'Generated response');
             Assert.ok(Array.isArray(resp), 'response is Pet array');
-            var pet = resp[0];
+            let pet = resp[0];
             Assert.ok(pet, 'Ok Pet response');
             Assert.ok(Number.isInteger(pet.id), 'id is integer');
             //TODO add asserts for pending props
@@ -52,108 +46,96 @@ describe('Response Mock generator', function () {
         });
     });
 
-    it('should generate response mock for path /pet/{petId}', function(done) {
+    it('should generate response mock for path /pet/{petId}', (done) => {
         swagmock.responses({
             path: '/pet/{petId}',
             operation: 'get',
             response: '200'
-        }, function(err, mock) {
+        }, (err, mock) => {
             Assert.ok(!err, 'No error');
 
             Assert.ok(mock, 'Generated mock');
-            var resp = mock.responses;
+            let resp = mock.responses;
             Assert.ok(resp, 'Generated response');
             //TODO add asserts for pending props
             done();
         });
     });
 
-    it('should use the exampleValue for pet name in for path /pet/{petId}', function(done) {
-        swagmock.responses({
-            path: '/pet/{petId}',
-            operation: 'get',
-            response: '200',
-            useExamples: true
-        }, function(err, mock) {
-            Assert.equal(mock.responses.name, 'doggie');
-            done();
-        });
-    });
-
-    it('should generate response mock for path /pet/{petId}/uploadImage', function(done) {
+    it('should generate response mock for path /pet/{petId}/uploadImage', (done) => {
         swagmock.responses({
             path: '/pet/{petId}/uploadImage',
             operation: 'post',
             response: '200'
-        }, function(err, mock) {
+        }, (err, mock) => {
             Assert.ok(!err, 'No error');
 
             Assert.ok(mock, 'Generated mock');
-            var resp = mock.responses;
+            let resp = mock.responses;
             Assert.ok(resp, 'Generated response');
             //TODO add asserts for pending props
             done();
         });
     });
 
-    it('should generate response mock for path /store/inventory', function(done) {
+    it('should generate response mock for path /store/inventory', (done) => {
         swagmock.responses({
             path: '/store/inventory',
             operation: 'get',
             response: '200'
-        }, function(err, mock) {
+        }, (err, mock) => {
             Assert.ok(!err, 'No error');
 
             Assert.ok(mock, 'Generated mock');
-            var resp = mock.responses;
+            let resp = mock.responses;
             Assert.ok(resp, 'Generated response');
             //TODO add asserts for pending props
             done();
         });
     });
 
-    it('should generate response mock for path /store/order', function(done) {
+    it('should generate response mock for path /store/order', (done) => {
         swagmock.responses({
             path: '/store/order',
             operation: 'post',
             response: '200'
-        }, function(err, mock) {
+        }, (err, mock) => {
             Assert.ok(!err, 'No error');
 
             Assert.ok(mock, 'Generated mock');
-            var resp = mock.responses;
+            let resp = mock.responses;
             Assert.ok(resp, 'Generated response');
             //TODO add asserts for pending props
             done();
         });
     });
 
-    it('should generate response mock for path /user/login', function(done) {
+    it('should generate response mock for path /user/login', (done) => {
         swagmock.responses({
             path: '/user/login',
             operation: 'get',
             response: '200'
-        }, function(err, mock) {
+        }, (err, mock) => {
             Assert.ok(!err, 'No error');
 
             Assert.ok(mock, 'Generated mock');
-            var resp = mock.responses;
+            let resp = mock.responses;
             Assert.ok(resp, 'Generated response');
             //TODO add asserts for pending props
             done();
         });
     });
 
-    it('should generate response mock for path /pet', function(done) {
+    it('should generate response mock for path /pet', (done) => {
         swagmock.responses({
             path: '/pet',
             operation: 'post',
             response: '405'
-        }, function(err, mock) {
+        }, (err, mock) => {
             Assert.ok(!err, 'No error');
 
             Assert.ok(mock, 'Generated mock');
-            var resp = mock.responses;
+            let resp = mock.responses;
             Assert.ok(!resp, 'No response');
             //TODO add asserts for pending props
             done();
