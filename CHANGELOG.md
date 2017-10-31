@@ -1,3 +1,9 @@
+# v1.1.0
+
+## Features
+
+- Added the option `useExamples` - (*Boolean*)- (optional) - Should the generated mock make use of example values defined in your swagger.json. Note: invalid example values will create invalid mockdata!
+
 # v1.0.0
 ## Features
 - es6 support and node engine changed to 6.x
