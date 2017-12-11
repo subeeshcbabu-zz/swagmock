@@ -78,6 +78,19 @@ describe('Response Mock generator', () => {
         });
     });
 
+    it('should use the example false when generating with examples for path /pet/{petId}', (done) => {
+        swagmock.responses({
+            path: '/pet/{petId}',
+            operation: 'get',
+            response: '200',
+            useExamples: true
+        }, (err, mock) => {
+            let resp = mock.responses;
+            Assert.equal(resp.mean, false);
+            done();
+        });
+    });
+
     it('should generate response mock for path /pet/{petId}/uploadImage', (done) => {
         swagmock.responses({
             path: '/pet/{petId}/uploadImage',

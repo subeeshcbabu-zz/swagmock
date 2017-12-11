@@ -844,6 +844,11 @@
                     "type": "string",
                     "description": "pet status in the store",
                     "enum": ["available", "pending", "sold"]
+                },
+                "mean": {
+                    "type": "boolean",
+                    "description": "whether or not the pet is mean",
+                    "example": false
                 }
             },
             "xml": {
