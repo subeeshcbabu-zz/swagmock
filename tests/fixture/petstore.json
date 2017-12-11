@@ -806,6 +806,27 @@
         "Pet": {
             "type": "object",
             "required": ["name", "photoUrls"],
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "test-one": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "test-two": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 20
+                        }
+                    }
+                }
+            ],
             "properties": {
                 "id": {
                     "type": "integer",

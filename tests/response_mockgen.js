@@ -78,6 +78,21 @@ describe('Response Mock generator', () => {
         });
     });
 
+    it('should include properties specified in allOf for path /pet/{petId}', (done) => {
+      swagmock.responses({
+          path: '/pet/{petId}',
+          operation: 'get',
+          response: '200',
+          useExamples: true
+      }, (err, mock) => {
+          let resp = mock.responses;
+          Assert.ok(resp['test-one'], 'Generated value for test-one');
+          Assert.equal(resp['test-two'], 20);
+          Assert.ok(resp['name'], 'Generated value for name');
+          done();
+      });
+    });
+
     it('should generate response mock for path /pet/{petId}/uploadImage', (done) => {
         swagmock.responses({
             path: '/pet/{petId}/uploadImage',
