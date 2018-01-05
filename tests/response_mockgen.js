@@ -16,8 +16,8 @@ describe('Response Mock generator', () => {
             Assert.ok(mock, 'Generated mock');
             let resp = mock.responses;
             Assert.ok(resp, 'Generated response');
-            Assert.ok(Number.isInteger(resp.id), 'id is integer');
-            Assert.ok(Number.isInteger(resp.petId), 'petId is integer');
+            Assert.ok(typeof resp.id === 'string', 'id is string (int64)');
+            Assert.ok(typeof resp.petId === 'string'), 'petId is string (int64)');
             Assert.ok([ 1, 3, 5 ].indexOf(resp.quantity) != -1, 'quantity is integer enum');
             Assert.ok(typeof resp.shipDate === 'string', 'shipDate is string');
             Assert.ok(['placed','approved','delivered'].indexOf(resp.status) !== -1, 'status is enum');
@@ -40,7 +40,7 @@ describe('Response Mock generator', () => {
             Assert.ok(Array.isArray(resp), 'response is Pet array');
             let pet = resp[0];
             Assert.ok(pet, 'Ok Pet response');
-            Assert.ok(Number.isInteger(pet.id), 'id is integer');
+            Assert.ok(typeof pet.petId === 'string', 'id is string (int64)');
             //TODO add asserts for pending props
             done();
         });
