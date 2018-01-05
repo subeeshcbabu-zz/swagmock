@@ -88,8 +88,8 @@ describe('Request Mock generator', () => {
             Assert.ok(request.body, 'Generated body request');
             let order = request.body;
             Assert.ok(typeof order === 'object', 'OK value for body');
-            Assert.ok(Number.isInteger(order.id), 'order.id is integer');
-            Assert.ok(Number.isInteger(order.petId), 'order.petId is integer');
+            Assert.ok(typeof order.id === 'string', 'order.id is string (int64)');
+            Assert.ok(typeof order.petId === 'string', 'order.petId is string (int64)');
             Assert.ok(Number.isInteger(order.quantity), 'order.quantity is integer');
             Assert.ok(typeof order.shipDate === 'string', 'order.shipDate is string');
             Assert.ok(['placed','approved','delivered'].indexOf(order.status) !== -1, 'order.status is enum');
@@ -112,7 +112,7 @@ describe('Request Mock generator', () => {
             Assert.ok(users.length === 1, 'Created a request array of users');
             let user = users[0];
             Assert.ok(typeof user === 'object', 'OK value for user request');
-            Assert.ok(Number.isInteger(user.id), 'user.id is integer');
+            Assert.ok(typeof user.id === 'string', 'user.id is string (int64)');
             Assert.ok(Number.isInteger(user.userStatus), 'user.userStatus is integer');
             Assert.ok(typeof user.username === 'string', 'user.username is string');
 
