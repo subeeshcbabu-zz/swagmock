@@ -89,6 +89,8 @@ describe('Response Mock generator', () => {
             Assert.ok(mock, 'Generated mock');
             let resp = mock.responses;
             Assert.ok(resp, 'Generated response');
+            Assert.ok(Number.isInteger(resp.code), 'response.code is integer');
+            Assert.ok(resp.code >= -2147483648 && resp.code <= 2147483647, 'response.code is has value in int32 range');
             //TODO add asserts for pending props
             done();
         });
