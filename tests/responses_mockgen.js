@@ -22,6 +22,7 @@ describe('Responses Mock generator', () => {
             Assert.ok(resp.hasOwnProperty('404'), 'Generated 404 response');
             let successResp = resp['200'];
             Assert.ok(Number.isInteger(successResp.id), 'id is integer');
+            Assert.ok(successResp.id >= -9223372036854775000 && successResp.id <= 9223372036854775000, 'id has value in int64 range');
             Assert.ok(Number.isInteger(successResp.petId), 'petId is integer');
             Assert.ok(Number.isInteger(successResp.quantity), 'quantity is integer');
             Assert.ok(typeof successResp.shipDate === 'string', 'shipDate is string');
@@ -50,6 +51,7 @@ describe('Responses Mock generator', () => {
             let pet = resp[0];
             Assert.ok(pet, 'Ok Pet response');
             Assert.ok(Number.isInteger(pet.id), 'id is integer');
+            Assert.ok(pet.id >= -9223372036854775000 && pet.id <= 9223372036854775000, 'id has value in int64 range');
             done();
         }).catch(err => {
             Assert.ok(!err, 'No error');

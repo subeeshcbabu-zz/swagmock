@@ -89,6 +89,7 @@ describe('Request Mock generator', () => {
             let order = request.body;
             Assert.ok(typeof order === 'object', 'OK value for body');
             Assert.ok(Number.isInteger(order.id), 'order.id is integer');
+            Assert.ok(order.id >= -9223372036854775000 && order.id <= 9223372036854775000, 'id has value in int64 range');
             Assert.ok(Number.isInteger(order.petId), 'order.petId is integer');
             Assert.ok(Number.isInteger(order.quantity), 'order.quantity is integer');
             Assert.ok(typeof order.shipDate === 'string', 'order.shipDate is string');
