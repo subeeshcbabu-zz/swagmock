@@ -12,6 +12,7 @@ describe('Response Mock generator', () => {
             operation: 'get',
             response: '200'
         }, (err, mock) => {
+            console.log({err})
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
             let resp = mock.responses;
