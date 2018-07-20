@@ -15,6 +15,7 @@ describe('Parameter Mock generator', () => {
                     path: '/store/order/{orderId}',
                     operation: 'get'
                 }, (err, mock) => {
+                    console.log({err, mock});
                     Assert.ok(!err, 'No error');
                     Assert.ok(mock, 'Generated mock');
                     let params = mock.parameters;
@@ -22,7 +23,6 @@ describe('Parameter Mock generator', () => {
                     Assert.ok(params.path, 'Generated path parameter');
                     Assert.ok(params.path[0].name === 'orderId', 'generated mock parameter for orderId');
 
-                    console.log(params);
                     Assert.ok(params.path[0].value >= 1 && params.path[0].value <= 10, 'OK value for orderId');
                     done();
                 });
