@@ -8,7 +8,7 @@
   },
   "scripts": {
     "lint": "eslint lib",
-    "test": "mocha tests/*.js",
+    "test": "mocha tests/**/*.js",
     "cover": "istanbul cover _mocha -- tests/*.js"
   },
   "repository": {
@@ -34,7 +34,7 @@
     "chance": "^1.0.3",
     "moment": "^2.13.0",
     "randexp": "^0.4.2",
-    "swagger-parser": "^3.4.1"
+    "swagger-parser": "^5.0"
   },
   "devDependencies": {
     "eslint": "^2.13.0",

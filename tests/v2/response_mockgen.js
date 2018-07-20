@@ -1,9 +1,9 @@
 const Assert = require('assert');
-const Swagmock = require('../lib');
+const Swagmock = require('../../lib');
 const Path = require('path')
 
 describe('Response Mock generator', () => {
-    let apiPath = Path.resolve(__dirname, 'fixture/petstore.json');
+    let apiPath = Path.resolve(__dirname, '../fixture/petstore.json');
     let swagmock = Swagmock(apiPath);
 
     it('should generate response mock for path /store/order/{orderId}', (done) => {
@@ -12,7 +12,7 @@ describe('Response Mock generator', () => {
             operation: 'get',
             response: '200'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             Assert.ok(mock, 'Generated mock');
             let resp = mock.responses;
             Assert.ok(resp, 'Generated response');
@@ -32,7 +32,7 @@ describe('Response Mock generator', () => {
             operation: 'get',
             response: '200'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
 
             Assert.ok(mock, 'Generated mock');
             let resp = mock.responses;
@@ -52,7 +52,7 @@ describe('Response Mock generator', () => {
             operation: 'get',
             response: '200'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
 
             Assert.ok(mock, 'Generated mock');
             let resp = mock.responses;
@@ -84,7 +84,7 @@ describe('Response Mock generator', () => {
             operation: 'post',
             response: '200'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
 
             Assert.ok(mock, 'Generated mock');
             let resp = mock.responses;
@@ -100,7 +100,7 @@ describe('Response Mock generator', () => {
             operation: 'get',
             response: '200'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
 
             Assert.ok(mock, 'Generated mock');
             let resp = mock.responses;
@@ -116,7 +116,7 @@ describe('Response Mock generator', () => {
             operation: 'post',
             response: '200'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
 
             Assert.ok(mock, 'Generated mock');
             let resp = mock.responses;
@@ -132,7 +132,7 @@ describe('Response Mock generator', () => {
             operation: 'get',
             response: '200'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
 
             Assert.ok(mock, 'Generated mock');
             let resp = mock.responses;
@@ -148,7 +148,7 @@ describe('Response Mock generator', () => {
             operation: 'post',
             response: '405'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
 
             Assert.ok(mock, 'Generated mock');
             let resp = mock.responses;

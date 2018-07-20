@@ -1,10 +1,10 @@
 const Assert = require('assert');
-const Swagmock = require('../lib');
+const Swagmock = require('../../lib');
 const Path = require('path')
 const Parser = require('swagger-parser');
 
 describe('Responses Mock generator', () => {
-    let apiPath = Path.resolve(__dirname, 'fixture/petstore.json');
+    let apiPath = Path.resolve(__dirname, '../fixture/petstore.json');
     let apiResolver = Parser.validate(apiPath);
     let swagmock = Swagmock(apiResolver, { validated: true });
 
@@ -29,7 +29,7 @@ describe('Responses Mock generator', () => {
             Assert.ok(typeof successResp.complete === 'boolean', 'complete is boolean');
             done();
         }).catch(err => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             done();
         });
     });
@@ -52,7 +52,7 @@ describe('Responses Mock generator', () => {
             Assert.ok(Number.isInteger(pet.id), 'id is integer');
             done();
         }).catch(err => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             done();
         });
     });
@@ -61,7 +61,7 @@ describe('Responses Mock generator', () => {
         swagmock.responses({
             path: '/pet/{petId}'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
 
             Assert.ok(mock, 'Generated mock');
             Assert.ok(mock.get, 'Generated mock for get operation');
@@ -78,7 +78,7 @@ describe('Responses Mock generator', () => {
     it('should generate response mock for all paths', (done) => {
         swagmock.responses({}, (err, mock) => {
             let testMock;
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             Assert.ok(mock, 'Generated mock');
             Assert.ok(mock['/pet'], 'Generated mock for path /pet');
             Assert.ok(mock['/pet/findByStatus'], 'Generated mock for path /pet/findByStatus');

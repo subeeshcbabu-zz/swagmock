@@ -1,9 +1,9 @@
 const Assert = require('assert');
-const Swagmock = require('../lib');
+const Swagmock = require('../../lib');
 const Path = require('path')
 
 describe('Parameters Mock generator',  () => {
-    let apiPath = Path.resolve(__dirname, 'fixture/petstore.json');
+    let apiPath = Path.resolve(__dirname, '../fixture/petstore-v3.json');
     let swagmock = Swagmock(apiPath);
     it('should generate parameter mock for path /store/order/{orderId} for all operations', (done) => {
         let mockgen = swagmock.parameters({
@@ -21,7 +21,7 @@ describe('Parameters Mock generator',  () => {
             Assert.ok(params.path[0].value >= 1 && params.path[0].value <= 10, 'OK value for orderId');
             done();
         }).catch(err => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             done();
         });
     });
@@ -54,7 +54,7 @@ describe('Parameters Mock generator',  () => {
             Assert.ok(testMock.length <= 4, 'body parameter should have maximum 4 items');
             done();
         }).catch(err => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             done();
         });
     });

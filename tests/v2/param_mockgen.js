@@ -1,10 +1,10 @@
 const Assert = require('assert');
-const Swagmock = require('../lib');
+const Swagmock = require('../../lib');
 const Path = require('path');
 const Parser = require('swagger-parser');
 
 describe('Parameter Mock generator', () => {
-    let apiPath = Path.resolve(__dirname, 'fixture/petstore.json');
+    let apiPath = Path.resolve(__dirname, '../fixture/petstore.json');
     let apiResolver = Parser.validate(apiPath);
     //Test case of valiadted api use case.
     let swagmock = Swagmock(apiResolver, { validated: true });
@@ -13,7 +13,7 @@ describe('Parameter Mock generator', () => {
             path: '/store/order/{orderId}',
             operation: 'get'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             Assert.ok(mock, 'Generated mock');
             let params = mock.parameters;
             Assert.ok(params, 'Generated parameters');
@@ -29,13 +29,13 @@ describe('Parameter Mock generator', () => {
             path: '/pet/findByStatus',
             operation: 'get'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             Assert.ok(mock, 'Generated mock');
             let params = mock.parameters;
             Assert.ok(params, 'Generated parameters');
             Assert.ok(params.query, 'Generated query parameter');
             Assert.ok(params.query[0].name === 'status', 'generated mock parameter for status');
-            Assert.ok(params.query[0].value, 'OK value for status');
+            Assert.ok(typeof params.query[0].value[0] === 'string', 'OK value for status');
             Assert.ok(params.query[0].separator === 'multi' , 'OK multi separator');
             done();
         });
@@ -46,7 +46,7 @@ describe('Parameter Mock generator', () => {
             path: '/pet/{petId}',
             operation: 'get'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             Assert.ok(mock, 'Generated mock');
             let params = mock.parameters;
             Assert.ok(params, 'Generated parameters');
@@ -80,7 +80,7 @@ describe('Parameter Mock generator', () => {
             path: '/pet/{petId}',
             operation: 'post'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             Assert.ok(mock, 'Generated mock');
             let params = mock.parameters;
             Assert.ok(params, 'Generated parameters');
@@ -97,7 +97,7 @@ describe('Parameter Mock generator', () => {
             path: '/pet/{petId}/uploadImage',
             operation: 'post'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             Assert.ok(mock, 'Generated mock');
             let params = mock.parameters;
             Assert.ok(params, 'Generated parameters');
@@ -117,7 +117,7 @@ describe('Parameter Mock generator', () => {
             path: '/store/inventory',
             operation: 'get'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             Assert.ok(mock, 'Generated mock');
             let params = mock.parameters;
             Assert.ok(params, 'Generated parameters');
@@ -130,7 +130,7 @@ describe('Parameter Mock generator', () => {
             path: '/store/order',
             operation: 'post'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             Assert.ok(mock, 'Generated mock');
             let params = mock.parameters;
             Assert.ok(params, 'Generated parameters');
@@ -153,7 +153,7 @@ describe('Parameter Mock generator', () => {
             path: '/user/createWithArray',
             operation: 'post'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             Assert.ok(mock, 'Generated mock');
             let params = mock.parameters;
             Assert.ok(params, 'Generated parameters');
@@ -179,7 +179,7 @@ describe('Parameter Mock generator', () => {
             path: '/user/logout',
             operation: 'get'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             Assert.ok(mock, 'Generated mock');
             let params = mock.parameters;
             Assert.ok(params, 'Generated parameters');

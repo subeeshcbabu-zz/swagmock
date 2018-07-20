@@ -1,16 +1,16 @@
 const Assert = require('assert');
-const Swagmock = require('../lib');
+const Swagmock = require('../../lib');
 const Path = require('path')
 
 describe('Request Mock generator', () => {
-    let apiPath = Path.resolve(__dirname, 'fixture/petstore.json');
+    let apiPath = Path.resolve(__dirname, '../fixture/petstore.json');
     let swagmock = Swagmock(apiPath);
     it('should generate request mock for path /store/order/{orderId}', (done) => {
         swagmock.requests({
             path: '/store/order/{orderId}',
             operation: 'get'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             Assert.ok(mock, 'Generated mock');
             let request = mock.request;
             Assert.ok(request, 'Generated request');
@@ -25,7 +25,7 @@ describe('Request Mock generator', () => {
             path: '/pet/findByStatus',
             operation: 'get'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             Assert.ok(mock, 'Generated mock');
             let request = mock.request;
             Assert.ok(request, 'Generated request');
@@ -39,7 +39,7 @@ describe('Request Mock generator', () => {
             path: '/pet/{petId}',
             operation: 'get'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             Assert.ok(mock, 'Generated mock');
             let request = mock.request;
             Assert.ok(request, 'Generated parameters');
@@ -53,7 +53,7 @@ describe('Request Mock generator', () => {
             path: '/pet/{petId}/uploadImage',
             operation: 'post'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             Assert.ok(mock, 'Generated mock');
             let request = mock.request;
             Assert.ok(request, 'Generated request');
@@ -68,7 +68,7 @@ describe('Request Mock generator', () => {
             path: '/store/inventory',
             operation: 'get'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             Assert.ok(mock, 'Generated mock');
             let request = mock.request;
             Assert.ok(request, 'Generated request');
@@ -81,7 +81,7 @@ describe('Request Mock generator', () => {
             path: '/store/order',
             operation: 'post'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             Assert.ok(mock, 'Generated mock');
             let request = mock.request;
             Assert.ok(request, 'Generated request');
@@ -103,7 +103,7 @@ describe('Request Mock generator', () => {
             path: '/user/createWithArray',
             operation: 'post'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             Assert.ok(mock, 'Generated mock');
             let request = mock.request;
             Assert.ok(request, 'Generated request');
