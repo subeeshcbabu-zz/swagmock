@@ -12,8 +12,7 @@ describe('Response Mock generator', () => {
             operation: 'get',
             response: '200'
         }, (err, mock) => {
-            console.log({err})
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             Assert.ok(mock, 'Generated mock');
             let resp = mock.responses;
             Assert.ok(resp, 'Generated response');
@@ -33,7 +32,7 @@ describe('Response Mock generator', () => {
             operation: 'get',
             response: '200'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
 
             Assert.ok(mock, 'Generated mock');
             let resp = mock.responses;
@@ -53,7 +52,7 @@ describe('Response Mock generator', () => {
             operation: 'get',
             response: '200'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
 
             Assert.ok(mock, 'Generated mock');
             let resp = mock.responses;
@@ -85,7 +84,7 @@ describe('Response Mock generator', () => {
             operation: 'post',
             response: '200'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
 
             Assert.ok(mock, 'Generated mock');
             let resp = mock.responses;
@@ -101,7 +100,7 @@ describe('Response Mock generator', () => {
             operation: 'get',
             response: '200'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
 
             Assert.ok(mock, 'Generated mock');
             let resp = mock.responses;
@@ -117,7 +116,7 @@ describe('Response Mock generator', () => {
             operation: 'post',
             response: '200'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
 
             Assert.ok(mock, 'Generated mock');
             let resp = mock.responses;
@@ -133,7 +132,7 @@ describe('Response Mock generator', () => {
             operation: 'get',
             response: '200'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
 
             Assert.ok(mock, 'Generated mock');
             let resp = mock.responses;
@@ -149,7 +148,7 @@ describe('Response Mock generator', () => {
             operation: 'post',
             response: '405'
         }, (err, mock) => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
 
             Assert.ok(mock, 'Generated mock');
             let resp = mock.responses;

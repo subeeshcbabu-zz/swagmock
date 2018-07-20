@@ -21,7 +21,7 @@ describe('Parameters Mock generator',  () => {
             Assert.ok(params.path[0].value >= 1 && params.path[0].value <= 10, 'OK value for orderId');
             done();
         }).catch(err => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             done();
         });
     });
@@ -54,7 +54,7 @@ describe('Parameters Mock generator',  () => {
             Assert.ok(testMock.length <= 4, 'body parameter should have maximum 4 items');
             done();
         }).catch(err => {
-            Assert.ok(!err, 'No error');
+            if (err) throw err;
             done();
         });
     });
