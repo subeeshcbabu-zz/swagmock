@@ -3,8 +3,8 @@ const Swagmock = require('../lib');
 const Path = require('path');
 const Parser = require('swagger-parser');
 
-describe('Parameter Mock generator', () => {
-    let apiPath = Path.resolve(__dirname, 'fixture/petstore-swagger.json');
+describe('OpenAPI Parameter Mock generator', () => {
+    let apiPath = Path.resolve(__dirname, 'fixture/petstore-openapi.json');
     let apiResolver = Parser.validate(apiPath);
     //Test case of valiadted api use case.
     let swagmock = Swagmock(apiResolver, {validated: true});
@@ -15,7 +15,7 @@ describe('Parameter Mock generator', () => {
         }, (err, mock) => {
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
-            let params = mock.parameters;
+            const params = mock.parameters;
             Assert.ok(params, 'Generated parameters');
             Assert.ok(params.path, 'Generated path parameter');
             Assert.ok(params.path[0].name === 'orderId', 'generated mock parameter for orderId');
@@ -31,12 +31,12 @@ describe('Parameter Mock generator', () => {
         }, (err, mock) => {
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
-            let params = mock.parameters;
+            const params = mock.parameters;
             Assert.ok(params, 'Generated parameters');
             Assert.ok(params.query, 'Generated query parameter');
-            Assert.ok(params.query[0].name === 'status', 'generated mock parameter for status');
+            Assert.ok(params.query[0].name === 'status', 'generated mock request body for status');
             Assert.ok(params.query[0].value, 'OK value for status');
-            Assert.ok(params.query[0].separator === 'multi', 'OK multi separator');
+            Assert.ok(params.query[0].value.indexOf('&') > -1, 'OK form separator');
             done();
         });
     });
@@ -48,7 +48,7 @@ describe('Parameter Mock generator', () => {
         }, (err, mock) => {
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
-            let params = mock.parameters;
+            const params = mock.parameters;
             Assert.ok(params, 'Generated parameters');
             Assert.ok(params.path, 'Generated path parameter');
             Assert.ok(params.path[0].name === 'petId', 'generated mock parameter for petId');
@@ -82,7 +82,7 @@ describe('Parameter Mock generator', () => {
         }, (err, mock) => {
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
-            let params = mock.parameters;
+            const params = mock.parameters;
             Assert.ok(params, 'Generated parameters');
             Assert.ok(params.path, 'Generated path parameter');
             Assert.ok(params.path[0].name === 'petId', 'generated mock parameter for petId');
@@ -99,15 +99,16 @@ describe('Parameter Mock generator', () => {
         }, (err, mock) => {
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
-            let params = mock.parameters;
+            const params = mock.parameters;
+            const body = mock.requestBody;
             Assert.ok(params, 'Generated parameters');
             Assert.ok(params.path, 'Generated path parameter');
             Assert.ok(params.path[0].name === 'petId', 'generated mock parameter for petId');
             Assert.ok(Number.isInteger(params.path[0].value), 'OK value for petId');
             Assert.ok(params.path[0].value > 1000 && params.path[0].value < 1010, 'OK value for petId');
-            Assert.ok(params.formData, 'Generated formData parameter');
-            Assert.ok(params.formData[0].name === 'additionalMetadata', 'generated mock parameter for additionalMetadata');
-            Assert.ok(typeof params.formData[0].value === 'string', 'OK value for additionalMetadata');
+            Assert.ok(body, 'Generated request body ');
+            Assert.ok(typeof body['additionalMetadata'] !== 'undefined', 'generated mock parameter for additionalMetadata');
+            Assert.ok(typeof body['additionalMetadata'] === 'string', 'OK value for additionalMetadata');
             done();
         });
     });
@@ -119,57 +120,49 @@ describe('Parameter Mock generator', () => {
         }, (err, mock) => {
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
-            let params = mock.parameters;
+            const params = mock.parameters;
             Assert.ok(params, 'Generated parameters');
             done();
         });
     });
 
-    it('should generate parameter mock for path /store/order', (done) => {
+    it('should generate request body mock for path /store/order', (done) => {
         swagmock.parameters({
             path: '/store/order',
             operation: 'post'
         }, (err, mock) => {
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
-            let params = mock.parameters;
-            Assert.ok(params, 'Generated parameters');
-            Assert.ok(params.body, 'Generated body parameter');
-            Assert.ok(params.body[0].name === 'body', 'generated mock parameter for body');
-            let order = params.body[0].value;
-            Assert.ok(typeof order === 'object', 'OK value for body');
-            Assert.ok(Number.isInteger(order.id), 'order.id is integer');
-            Assert.ok(Number.isInteger(order.petId), 'order.petId is integer');
-            Assert.ok(Number.isInteger(order.quantity), 'order.quantity is integer');
-            Assert.ok(typeof order.shipDate === 'string', 'order.shipDate is string');
-            Assert.ok(['placed', 'approved', 'delivered'].indexOf(order.status) !== -1, 'order.status is enum');
-            Assert.ok(typeof order.complete === 'boolean', 'order.complete is boolean');
+            const body = mock.requestBody;
+            Assert.ok(body, 'Generated request body');
+            Assert.ok(Number.isInteger(body.id), 'order.id is integer');
+            Assert.ok(Number.isInteger(body.petId), 'order.petId is integer');
+            Assert.ok(Number.isInteger(body.quantity), 'order.quantity is integer');
+            Assert.ok(typeof body.shipDate === 'string', 'order.shipDate is string');
+            Assert.ok(['placed', 'approved', 'delivered'].indexOf(body.status) !== -1, 'order.status is enum');
+            Assert.ok(typeof body.complete === 'boolean', 'order.complete is boolean');
             done();
         });
     });
 
-    it('should generate parameter mock for path /user/createWithArray', (done) => {
+    it('should generate request body mock for path /user/createWithArray', (done) => {
         swagmock.parameters({
             path: '/user/createWithArray',
             operation: 'post'
         }, (err, mock) => {
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
-            let params = mock.parameters;
-            Assert.ok(params, 'Generated parameters');
+            const body = mock.requestBody;
+            Assert.ok(body, 'Generated request body');
 
-            Assert.ok(params.body, 'Generated body parameter');
-            Assert.ok(params.body[0].name === 'body', 'generated mock parameter for body');
-            let users = params.body[0].value;
-            Assert.ok(users.length === 1, 'Created a parameter array of users');
-            let user = users[0];
+            Assert.ok(body.length === 1, 'Created a parameter array of users');
+            const user = body[0];
             Assert.ok(typeof user === 'object', 'OK value for user parameter');
             Assert.ok(Number.isInteger(user.id), 'user.id is integer');
             Assert.ok(Number.isInteger(user.userStatus), 'user.userStatus is integer');
             Assert.ok(user.userStatus > 1000, 'user.userStatus is greater than 1000');
             Assert.ok(user.userStatus % 100 === 0, 'user.userStatus is multipleOf 100');
             Assert.ok(typeof user.username === 'string', 'user.username is string');
-
             done();
         });
     });
@@ -181,7 +174,7 @@ describe('Parameter Mock generator', () => {
         }, (err, mock) => {
             Assert.ok(!err, 'No error');
             Assert.ok(mock, 'Generated mock');
-            let params = mock.parameters;
+            const params = mock.parameters;
             Assert.ok(params, 'Generated parameters');
             Assert.ok(params.query, 'Generated path parameter');
             Assert.ok(params.query[0].name === 'common', 'generated mock parameter for common parameter');

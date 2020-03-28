@@ -2,8 +2,8 @@ const Assert = require('assert');
 const Swagmock = require('../lib');
 const Path = require('path')
 
-describe('Response Mock generator', () => {
-    let apiPath = Path.resolve(__dirname, 'fixture/petstore-swagger.json');
+describe('OpenAPI Response Mock generator', () => {
+    let apiPath = Path.resolve(__dirname, 'fixture/petstore-openapi.json');
     let swagmock = Swagmock(apiPath);
 
     it('should generate response mock for path /store/order/{orderId}', (done) => {
