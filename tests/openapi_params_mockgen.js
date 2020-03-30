@@ -2,8 +2,8 @@ const Assert = require('assert');
 const Swagmock = require('../lib');
 const Path = require('path')
 
-describe('Parameters Mock generator', () => {
-    let apiPath = Path.resolve(__dirname, 'fixture/petstore-swagger.json');
+describe('OpenAPI Parameters Mock generator', () => {
+    let apiPath = Path.resolve(__dirname, 'fixture/petstore-openapi.json');
     let swagmock = Swagmock(apiPath);
     it('should generate parameter mock for path /store/order/{orderId} for all operations', (done) => {
         let mockgen = swagmock.parameters({
@@ -46,11 +46,11 @@ describe('Parameters Mock generator', () => {
             Assert.ok(mock['/user'], 'Generated mock for path /user');
             Assert.ok(mock['/user/createWithArray'], 'Generated mock for path /user/createWithArray');
             //Test the default min and max
-            testMock = mock['/user/createWithArray'].post.parameters.body[0].value;
+            testMock = mock['/user/createWithArray'].post.requestBody;
             Assert.ok(testMock.length === 1, 'body parameter should have i item (default)');
             Assert.ok(mock['/user/createWithList'], 'Generated mock for path /user/createWithList');
             //Test maxItems
-            testMock = mock['/user/createWithList'].post.parameters.body[0].value;
+            testMock = mock['/user/createWithList'].post.requestBody;
             Assert.ok(testMock.length <= 4, 'body parameter should have maximum 4 items');
             done();
         }).catch(err => {

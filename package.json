@@ -1,6 +1,6 @@
 {
   "name": "swagmock",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Mock data generator for swagger api",
   "main": "lib/index.js",
   "engines": {
@@ -34,7 +34,7 @@
     "chance": "^1.0.3",
     "moment": "^2.13.0",
     "randexp": "^0.4.2",
-    "swagger-parser": "^3.4.1"
+    "swagger-parser": "^9.0.1"
   },
   "devDependencies": {
     "eslint": "^2.13.0",

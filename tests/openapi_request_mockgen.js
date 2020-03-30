@@ -2,8 +2,8 @@ const Assert = require('assert');
 const Swagmock = require('../lib');
 const Path = require('path')
 
-describe('Request Mock generator', () => {
-    let apiPath = Path.resolve(__dirname, 'fixture/petstore-swagger.json');
+describe('OpenAPI Request Mock generator', () => {
+    let apiPath = Path.resolve(__dirname, 'fixture/petstore-openapi.json');
     let swagmock = Swagmock(apiPath);
     it('should generate request mock for path /store/order/{orderId}', (done) => {
         swagmock.requests({
@@ -58,7 +58,7 @@ describe('Request Mock generator', () => {
             let request = mock.request;
             Assert.ok(request, 'Generated request');
             Assert.ok(request.pathname, 'Generated path request');
-            Assert.ok(request.formData, 'Generated formData request');
+            Assert.ok(request.requestBody, 'Generated formData request');
             done();
         });
     });
@@ -85,8 +85,8 @@ describe('Request Mock generator', () => {
             Assert.ok(mock, 'Generated mock');
             let request = mock.request;
             Assert.ok(request, 'Generated request');
-            Assert.ok(request.body, 'Generated body request');
-            let order = request.body;
+            Assert.ok(request.requestBody, 'Generated body request');
+            let order = request.requestBody;
             Assert.ok(typeof order === 'object', 'OK value for body');
             Assert.ok(Number.isInteger(order.id), 'order.id is integer');
             Assert.ok(Number.isInteger(order.petId), 'order.petId is integer');
@@ -107,8 +107,8 @@ describe('Request Mock generator', () => {
             Assert.ok(mock, 'Generated mock');
             let request = mock.request;
             Assert.ok(request, 'Generated request');
-            Assert.ok(request.body, 'Generated body request');
-            let users = request.body;
+            Assert.ok(request.requestBody, 'Generated body request');
+            let users = request.requestBody;
             Assert.ok(users.length === 1, 'Created a request array of users');
             let user = users[0];
             Assert.ok(typeof user === 'object', 'OK value for user request');

@@ -3,8 +3,8 @@ const Swagmock = require('../lib');
 const Path = require('path')
 const Parser = require('swagger-parser');
 
-describe('Responses Mock generator', () => {
-    let apiPath = Path.resolve(__dirname, 'fixture/petstore-swagger.json');
+describe('OpenAPI Responses Mock generator', () => {
+    let apiPath = Path.resolve(__dirname, 'fixture/petstore-openapi.json');
     let apiResolver = Parser.validate(apiPath);
     let swagmock = Swagmock(apiResolver, {validated: true});
 
